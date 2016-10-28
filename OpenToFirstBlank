@@ -1,0 +1,14 @@
+
+function onOpen() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet();  
+  
+  for(var n = 1;;n++){
+    var checkCell = sheet.getRange("A" + n).getValue();
+    if(checkCell == ''){break}
+      }
+
+  n = Number(n);
+  var openCell = "A" + n;
+  Logger.log(openCell);
+  sheet.getRange(openCell).activate();
+};
