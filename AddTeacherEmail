@@ -1,0 +1,39 @@
+function onEdit(event) {
+
+//This searchers for an update in a column called "Name" in Row 1.
+//It adds the email address of the user that edited the cell in a column called "Teacher Email" in Row 1.
+
+  var updateColName = "Name";
+  var emailColName = "Teacher Email";
+  
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var currentSheet = ss.getActiveSheet();
+  var currentUser = Session.getActiveUser().getEmail();
+
+  var lastCol = currentSheet.getLastColumn();
+  var headers = currentSheet.getRange(1,1,1,lastCol).getValues();
+
+  var actRng = ss.getActiveRange();
+  var editCol = actRng.getColumn();
+  var editIndex = actRng.getRowIndex();
+  
+  Logger.log(actRng.getNumRows());
+  
+  var emailColNum = headers[0].indexOf(emailColName);
+  var updateColNum = headers[0].indexOf(updateColName);
+  
+  var emailCell = currentSheet.getRange(editIndex, emailColNum + 1);
+
+  var updateCell = currentSheet.getRange(editIndex, editCol);
+
+  if (updateColNum > -1 && editIndex > 1 && editCol == updateColNum + 1) {
+    if (updateCell.getValue() == "") {
+    emailCell.setValue("");
+  } else if (updateCell.getValue() !== "") {
+    emailCell.setValue(currentUser);
+  }
+  }
+  
+  //need to write this: identify edited RANGE and paste currentuser to corollary RANGE
+
+}
