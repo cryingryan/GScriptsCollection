@@ -5,14 +5,11 @@ function onEdit(event) {
 
   var updateColName = "Name";
   var emailColName = "Teacher Email";
-  
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var currentSheet = ss.getActiveSheet();
   var currentUser = Session.getActiveUser().getEmail();
-
   var lastCol = currentSheet.getLastColumn();
   var headers = currentSheet.getRange(1,1,1,lastCol).getValues();
-
   var actRng = ss.getActiveRange();
   var editCol = actRng.getColumn();
   var editIndex = actRng.getRowIndex();
@@ -21,9 +18,7 @@ function onEdit(event) {
   
   var emailColNum = headers[0].indexOf(emailColName);
   var updateColNum = headers[0].indexOf(updateColName);
-  
   var emailCell = currentSheet.getRange(editIndex, emailColNum + 1);
-
   var updateCell = currentSheet.getRange(editIndex, editCol);
 
   if (updateColNum > -1 && editIndex > 1 && editCol == updateColNum + 1) {
