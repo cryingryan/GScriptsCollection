@@ -1,0 +1,17 @@
+function onOpen() {
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var entries = [{
+    name: "Hide Columns By Date",
+    functionName: "hideColumnsByDate"
+  },{
+    name: "Show Whole Sheet",
+    functionName: "showAllColandRows"
+  },{
+    name: "Hide the Inactive",
+    functionName: "hideNotActiveRows"
+  }]
+  ;
+  spreadsheet.addMenu("Script Center Menu", entries);
+  
+  hideColumnsByDate();
+}
