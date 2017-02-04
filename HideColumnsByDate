@@ -28,9 +28,3 @@ function hideColumnsByDate() {
   var todaysDateColWidth = sheet.getColumnWidth(todaysDateCol);
   sheet.setColumnWidth(todaysDateCol,todaysDateColWidth + 20);  
 }
-
-function showAllColandRows() {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    sheet.showColumns(1, sheet.getLastColumn());
-    sheet.showRows(1, sheet.getLastRow());
-}
