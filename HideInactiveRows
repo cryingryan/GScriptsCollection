@@ -1,0 +1,14 @@
+function hideNotActiveRows() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var headers = sheet.getRange(3, 1, 1, sheet.getLastColumn()).getValues();
+  var maxRows = sheet.getMaxRows();
+  var activeCol = headers[0].indexOf("Active?")+1;
+  sheet.showRows(1, maxRows);
+  var data = sheet.getRange(3, activeCol, sheet.getLastRow()).getValues();
+  
+  for(var i=0; i< data.length; i++){
+    if(data[i][0].charAt(0) == 'N'){
+      sheet.hideRows(i+3);
+    }
+  }
+}
