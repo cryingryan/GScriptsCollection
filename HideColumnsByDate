@@ -9,20 +9,32 @@ function hideColumnsByDate() {
   
   sheet.showColumns(1, sheet.getLastColumn());
 
-  var firstDateCol = headers[0].indexOf("3/4") + 1;
+  var firstDateCol = headers[0].indexOf("2/10") + 1;
   var todaysDateCol = headers[0].indexOf(todaysDate) + 1; //because for some dumb reason, headers start at 0 but columns start at 1, why?!
+  var prevDateCol = todaysDateCol - 2;
+  var nextDateCol = todaysDateCol + 1;
   var lastDateCol = sheet.getLastColumn();
   var columnsToHideBefore = todaysDateCol - firstDateCol;
   var columnsToHideAfter = lastDateCol - todaysDateCol;
   
+  var PSNumCol = headers[0].indexOf("PS Number")+1;
+  var absencesCol = headers[0].indexOf("Absences per Block")+1;
+  var tardyCol = headers[0].indexOf("Tardy Days")+1;
+  var teacherCol = headers[0].indexOf("Teacher")+1;
+  var blockCol = headers[0].indexOf("Block")+1;
   var activeCol = headers[0].indexOf("Active?")+1;
+  var monitorCol = headers[0].indexOf("Monitor")+1;
   sheet.hideColumns(activeCol);
+  sheet.hideColumns(PSNumCol);
+  sheet.hideColumns(headers[0].indexOf("Total Remaining")+1);
+  sheet.hideColumns(headers[0].indexOf("Count of x")+1);
+  sheet.hideColumns(headers[0].indexOf("Grade")+1);
   
-  if (todaysDateCol > firstDateCol) {
-    sheet.hideColumns(firstDateCol, columnsToHideBefore);
+  if (todaysDateCol - 1 > firstDateCol) {
+    sheet.hideColumns(firstDateCol, columnsToHideBefore - 1);
   }
   
-  sheet.hideColumns(todaysDateCol+1, columnsToHideAfter);
+  sheet.hideColumns(todaysDateCol+2, columnsToHideAfter - 1);
 
   sheet.autoResizeColumn(todaysDateCol);
   var todaysDateColWidth = sheet.getColumnWidth(todaysDateCol);
